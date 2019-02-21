@@ -1,11 +1,13 @@
-package service.authentification;
+package services.authentification;
 
 import java.sql.SQLException;
-import service.ErrorJSON;
-import tool.UserTools;
+
+import tools.UserTools;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import services.ErrorJSON;
 
 public class CreateUser {
 	
@@ -15,7 +17,7 @@ public class CreateUser {
 				return ErrorJSON.serviceRefused("Argument Missing",-1);
 			}
 			boolean is_user = UserTools.userExists(login);
-			if(is_user) return service.ErrorJSON.serviceRefused("Username Already Taken "+login,-1);
+			if(is_user) return services.ErrorJSON.serviceRefused("Username Already Taken "+login,-1);
 			JSONObject retour = new JSONObject();
 			
 			int i = UserTools.insereNouvelUser(login,password,nom,prenom);
@@ -24,9 +26,9 @@ public class CreateUser {
 			return retour;
 			
 		} catch(JSONException e) {
-			return service.ErrorJSON.serviceRefused( e.getMessage(),100);
+			return services.ErrorJSON.serviceRefused( e.getMessage(),100);
 		} catch(SQLException e) {
-			return service.ErrorJSON.serviceRefused( e.getMessage(),1000);
+			return services.ErrorJSON.serviceRefused( e.getMessage(),1000);
 		}
 	}
 

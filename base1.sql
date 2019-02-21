@@ -1,3 +1,7 @@
+CREATE DATABASE janken;
+
+\u janken
+
 CREATE TABLE users(
 	id INTEGER AUTO_INCREMENT PRIMARY KEY,
 	login VARCHAR(32) UNIQUE,
@@ -32,3 +36,8 @@ CREATE TABLE duel(
 	FOREIGN KEY(from_id) REFERENCES users(id),
 	FOREIGN KEY(to_id) REFERENCES users(id)
 	);
+
+INSERT INTO users VALUE(null,"login","password","Nom","Prenom");
+INSERT INTO users VALUE(null,"Anthylnem","password","Richaume","Anthéa");
+INSERT INTO users VALUE(NULL,"Clemspace","password","Castellon","Clément");
+INSERT INTO users VALUE(NULL,"akirombre","anthea","ly","Jean-Baptiste");

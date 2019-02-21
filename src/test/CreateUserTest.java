@@ -2,7 +2,7 @@ package test;
 
 import org.json.JSONObject;
 
-import service.authentification.CreateUser;
+import services.authentification.CreateUser;
 
 public class CreateUserTest {
 

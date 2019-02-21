@@ -1,4 +1,4 @@
-package service.amis;
+package services.amis;
 
 public class AddFriend {
 

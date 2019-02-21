@@ -1,4 +1,4 @@
-package tool;
+package tools;
 
 import java.sql.*;
 import java.sql.SQLException;
@@ -30,10 +30,8 @@ public class UserTools {
 		java.sql.Statement st = c.createStatement();
 		ResultSet rs = st.executeQuery(query);
 		rs.next();
-		
-		System.out.println(password+rs.getString("password").toString());
-		boolean r = rs.getString("password").toString().equals(password);
-		return r;
+
+		return rs.getString("password").toString().equals(password);
 	}
 
 	public static int getIdUser(String login) throws SQLException {
@@ -43,22 +41,29 @@ public class UserTools {
 		java.sql.Statement st = c.createStatement();
 		ResultSet rs = st.executeQuery(query);
 		rs.next();
-		return rs.getInt(0);
+
+		return rs.getInt(1);
 	}
 
 	public static int insereConnexion(int id_user, boolean b) throws SQLException {
 		Connection c = Database.getMySQLConnection();
-		GregorianCalendar date = new GregorianCalendar();
-		date.getTime();
-		String query = "INSERT INTO connections VALUE(null,'"+id_user+"','"+date+"','"+b+"');";
-		java.sql.Statement st = c.createStatement();
-		st.executeUpdate(query);
+		Timestamp now = new Timestamp(System.currentTimeMillis());
 		
-		query = "SELECT conn_id FROM users WHERE times='"+date+"'and user_id'"+id_user+"';";
-		st = c.createStatement();
-		ResultSet rs = st.executeQuery(query);
+		PreparedStatement query = c.prepareStatement("INSERT INTO connections VALUE(null,?,?,?)");
+		query.setInt(1,id_user);
+		query.setTimestamp(2, now);
+		query.setBoolean(3, false);
 
-		return rs.getInt(0);
+		query.executeUpdate();
+		
+		PreparedStatement query1 = c.prepareStatement("SELECT conn_id FROM connections WHERE times = ? and user_id = ?");
+		query1.setTimestamp(1, now);
+		query1.setInt(2, id_user);
+		
+		ResultSet rs = query1.executeQuery();
+		rs.next();
+		
+		return rs.getInt(1);
 	}
 
 	public static String insereUser(int id_user, boolean b) {

@@ -1,4 +1,4 @@
-package servlet.authentification;
+package servlets.authentification;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,18 +12,15 @@ import org.json.JSONObject;
 
 public class CreateUserServlet extends HttpServlet{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException,IOException {
 		String login = req.getParameter("login");
 		String password = req.getParameter("password");
 		String nom = req.getParameter("nom");
 		String prenom = req.getParameter("prenom");
 		
-		JSONObject o = service.authentification.CreateUser.createUser(login,password,nom,prenom);
+		JSONObject o = services.authentification.CreateUser.createUser(login,password,nom,prenom);
 		
 		resp.setContentType("text/html");
 		PrintWriter out = resp.getWriter();
