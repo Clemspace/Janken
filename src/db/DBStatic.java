@@ -14,4 +14,5 @@ public class DBStatic {
 	
 	public static String mongo_host = "localhost";
 	public static String mongo_db = "janken_mongo";
+	public static String mongo_port = "27130";
 }
