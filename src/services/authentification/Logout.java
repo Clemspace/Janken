@@ -2,30 +2,33 @@ package services.authentification;
 
 import java.sql.SQLException;
 
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import tools.UserTools;
 
 public class Logout{
 
-	public static JSONObject logout(int id_user, boolean status){
+	public static JSONObject logout(String key, boolean status){
 		
-		if (id_user==null)
-			return services.ErrorJSON.serviceRefused("parametre manquant", -3);
+		if (key == null)
+			return services.ErrorJSON.serviceRefused("parametre manquant", -1);
 		try {
-			
-			if(UserTools.keyVerified(id_user)){
+			if(UserTools.keyVerified(key)){
+				System.out.println("test");
+
 				JSONObject retour = new JSONObject();
-				int conn_id = tools.UserTools.logout(id_user,false);
-					
-					
-				}
-				
-				
+				int r = tools.UserTools.logout(key,false);
+
+				retour.put("ok", r);
 				return retour;
 			}else{
-				return services.ErrorJSON.serviceRefused(" ", 3);
+				return services.ErrorJSON.serviceRefused("Clé non vérifiée", -1);
 			}
 		} catch (SQLException e) {
-			return services.ErrorJSON.serviceRefused("Erreur SQL", -1);
+			return services.ErrorJSON.serviceRefused("Logout Erreur SQL", 1000);
+		} catch (JSONException e) {
+			return services.ErrorJSON.serviceRefused("Logout Erreur JSON", 100);
 		}
 	}
 }

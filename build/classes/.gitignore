@@ -1,5 +1,7 @@
-/db/
-/servlets/
-/services/
-/tools/
 /commentaires/
+/servlets/
+/db/
+/tools/
+/services/
+/servlet/
+/test/

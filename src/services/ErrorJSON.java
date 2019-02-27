@@ -27,9 +27,9 @@ public class ErrorJSON {
 		 return json;
 	}
 	
-	public static JSONObject serviceAccepted(String message, int codeErreur) throws JSONException {
+	public static JSONObject serviceAccepted() throws JSONException {
 		 JSONObject json = new JSONObject();
-		 return json.put(message,codeErreur);
+		 return json.put("Ca marche",1);
 	}
 
 }

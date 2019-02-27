@@ -7,11 +7,18 @@ import java.sql.SQLException;
 
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
-import com.mongodb.Mongo; 
+import com.mongodb.Mongo;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
+import org.bson.Document;
 
 public class Database {
 	private DataSource dataSource;
@@ -42,9 +49,11 @@ public class Database {
 		return (DriverManager.getConnection(url,"root","root"));
 	}
 	
-	public static DBCollection getMongoCollection(String nom_collection) throws UnknownHostException{
-		Mongo m = new Mongo(DBStatic.mongo_host);
-		DB db = m.getDB(DBStatic.mongo_db);
+	public static MongoCollection<Document> getMongoCollection(String nom_collection) throws UnknownHostException{
+		com.mongodb.client.MongoClient m = MongoClients.create(); 
+				//new Mongo(DBStatic.mongo_host);
+		
+		MongoDatabase db = m.getDatabase(DBStatic.mongo_db);
 		return db.getCollection(nom_collection);
 	}
 }

@@ -1,27 +1,34 @@
 package commentaires;
 
+import java.net.UnknownHostException;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import com.mongodb.*;
+import org.bson.Document;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import com.mongodb.BasicDBObject;
+import com.mongodb.client.MongoCollection;
 
-import db.DBStatic;
 import db.Database;
-import db.UserTools;
+import tools.UserTools;
+import services.ErrorJSON;
 
 public class AddComment {
 		
-	public static BasicDBObject addComment(String key, int id_message, String text) {
-		
-		GregorianCalendar calendar = new java.util.GregorianCalendar();
-		Date dod = calendar.getTime();
-		BasicDBObject comment = new BasicDBObject();
+	public static JSONObject addComment(String key, String text) {
 		try {
-			DBCollection coll = Database.getMyMongoDBConnection();
-			//BasicDBObject comment = new BasicDBObject();
+			GregorianCalendar calendar = new java.util.GregorianCalendar();
+			Date dod = calendar.getTime();
+			Document comment = new Document();
+			MongoCollection<Document> coll = Database.getMongoCollection("messages");
 			BasicDBObject author = new BasicDBObject();
-			int id_user = UserTools.getIdUser(key);
+			int id_user;
+			id_user = UserTools.getIdUser(key);
+
 			String login = UserTools.getLogin(id_user);
 			author.put("id", id_user);
 			author.put("login", login);
@@ -29,31 +36,21 @@ public class AddComment {
 			comment.put("auteur", author);
 			comment.put("texte", text);
 			comment.put("date", dod);
+			coll.insertOne(comment);
 			
 			BasicDBObject query_msg = new BasicDBObject();
-			query_msg.put("id", id_message);
-			DBCursor curs = coll.find(query_msg);
+			query_msg.put("author", author);
+			query_msg.put("comment", comment);
 			
-			DBObject o = null;
-			if (curs.hasNext()) {
-				o = curs.next();
-			}
-			
-			ArrayList<DBObject> list_comments = (ArrayList<DBObject>) o.get("comments");
-			int id = list_comments.size();
-			comment.put("id", id);
-			
-			list_comments.add(comment);
-			BasicDBObject replace = new BasicDBObject();
-			replace.append("$set" , new BasicDBObject().append("comments", list_comments));
-			coll.update(query_msg, replace);
+			return new JSONObject().put("OK",1);
 			
 		} catch (UnknownHostException u) {
-			u.printStackTrace();
-			return ServiceTools.serviceRefused("UnknownHostException", 0);
-		} 
-		
-		return comment;
+			return ErrorJSON.serviceRefused("UnknownHostException", 0);
+		} catch (JSONException e) {
+			return ErrorJSON.serviceRefused("JSONException", 100);
+		} catch (SQLException e) {
+			return ErrorJSON.serviceRefused("JSONException", 1000);
+		}
 	}
 
 }

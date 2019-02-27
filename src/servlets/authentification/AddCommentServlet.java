@@ -14,10 +14,11 @@ import services.ErrorJSON;
 
 public class AddCommentServlet extends HttpServlet {
 
-	
+	private static final long serialVersionUID = 1L;
+
 	public void doGet(HttpServletRequest requete, HttpServletResponse reponse) throws ServletException, IOException {
 		
-		Map<String, String[]> pars=requete.getParameterMap(); // Recupere les paramètres de l'URL
+		Map<String, String[]> pars=requete.getParameterMap(); // Recupere les paramï¿½tres de l'URL
 		String rep=ErrorJSON.serviceRefused("Erreur param Servlet ", -100).toString();
 		
 		if(pars.containsKey("key") && pars.containsKey("text")){
