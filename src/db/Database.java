@@ -1,8 +1,13 @@
 package db;
 
+import java.net.UnknownHostException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.Mongo; 
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -35,5 +40,11 @@ public class Database {
 		}
 		String url = "jdbc:mysql://localhost/janken";
 		return (DriverManager.getConnection(url,"root","root"));
+	}
+	
+	public static DBCollection getMongoCollection(String nom_collection) throws UnknownHostException{
+		Mongo m = new Mongo(DBStatic.mongo_host);
+		DB db = m.getDB(DBStatic.mongo_db);
+		return db.getCollection(nom_collection);
 	}
 }

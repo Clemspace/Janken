@@ -21,4 +21,13 @@ public class UserTools {
 			return retour;
 		}
 	}
+	public static void logout(String key, boolean state) throws SQLException{
+		Connection c = Database.getMySQLConnection();
+		String query = "Update sessions SET expired=TRUE WHERE conn_id='"+key+"';";
+		java.sql.Statement st= c.createStatement();
+		st.executeUpdate(query);
+		st.close();
+		c.close();
+		
+	}
 }

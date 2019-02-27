@@ -13,6 +13,10 @@
 		<servlet-name>Login</servlet-name> 
 		<servlet-class>servlets.authentification.LoginServlet</servlet-class> 
 	</servlet> 
+	<servlet> 
+		<servlet-name>LogoutServlet</servlet-name> 
+		<servlet-class>servlets.authentification.LogoutServlet</servlet-class> 
+	</servlet> 
 	 
 	 
 	<!-- Servlet mapping authentification--> 
@@ -25,4 +29,9 @@
 		<servlet-name>Login</servlet-name> 
 		<url-pattern>/servlets/authentification/LoginServlet</url-pattern> 
 	</servlet-mapping> 
+	<servlet-mapping> 
+		<servlet-name>LogoutServlet</servlet-name> 
+		<url-pattern>/servlets/authentification/LogoutServlet</url-pattern> 
+	</servlet-mapping> 
+
 </web-app>

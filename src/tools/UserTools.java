@@ -44,6 +44,24 @@ public class UserTools {
 
 		return rs.getInt(1);
 	}
+	
+	public static int getActiveConnId(String key) throws SQLException {
+		
+		Connection conn = Database.getMySQLConnection();
+		
+		String query="SELECT id FROM sessions WHERE '"+key+"' AND expired=FALSE";
+		
+		Statement st=(Statement) conn.createStatement();
+		ResultSet rs=st.executeQuery(query);
+		
+		rs.next();
+		int ret=rs.getInt("conn_id");
+		rs.close();
+		st.close();
+		conn.close();
+		return ret;
+			
+	}
 
 	public static int insereConnexion(int id_user, boolean b) throws SQLException {
 		Connection c = Database.getMySQLConnection();

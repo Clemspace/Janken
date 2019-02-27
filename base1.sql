@@ -24,6 +24,7 @@ CREATE TABLE connections(
 	user_id INTEGER,
 	times timestamp,
 	conn_type boolean,
+	expired boolean,
 	FOREIGN KEY(user_id) REFERENCES users(id)
 	);
 	
