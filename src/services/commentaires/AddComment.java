@@ -1,8 +1,7 @@
-package commentaires;
+package services.commentaires;
 
 import java.net.UnknownHostException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 

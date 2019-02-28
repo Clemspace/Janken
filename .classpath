@@ -8,6 +8,5 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mongo-java-driver-3.10.1.jar" sourcepath="WebContent/WEB-INF/lib/mongo-java-driver-3.10.1.jar"/>
-	<classpathentry kind="lib" path="/users/Etu4/3676584/Téléchargements/mongo-java-driver-3.10.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

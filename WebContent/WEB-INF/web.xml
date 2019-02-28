@@ -17,6 +17,13 @@
 		<servlet-name>Logout</servlet-name> 
 		<servlet-class>servlets.authentification.LogoutServlet</servlet-class> 
 	</servlet> 
+	
+	<!-- Servlets amis --> 
+	<servlet> 
+		<servlet-name>AddFriend</servlet-name> 
+		<servlet-class>servlets.amis.AddFriendServlet</servlet-class> 
+	</servlet> 
+	 
 	 
 	 
 	<!-- Servlet mapping authentification--> 
@@ -32,6 +39,12 @@
 	<servlet-mapping> 
 		<servlet-name>Logout</servlet-name> 
 		<url-pattern>/servlets/authentification/LogoutServlet</url-pattern> 
+	</servlet-mapping> 
+	
+	<!-- Servlet mapping amis--> 
+	<servlet-mapping> 
+		<servlet-name>AddFriend</servlet-name> 
+		<url-pattern>/servlets/amis/AddFriendServlet</url-pattern> 
 	</servlet-mapping> 
 
 </web-app>

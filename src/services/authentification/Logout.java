@@ -15,12 +15,10 @@ public class Logout{
 			return services.ErrorJSON.serviceRefused("parametre manquant", -1);
 		try {
 			if(UserTools.keyVerified(key)){
-				System.out.println("test");
-
 				JSONObject retour = new JSONObject();
 				int r = tools.UserTools.logout(key,false);
 
-				retour.put("ok", r);
+				retour.put("Déconnecté", r);
 				return retour;
 			}else{
 				return services.ErrorJSON.serviceRefused("Clé non vérifiée", -1);

@@ -1,6 +1,7 @@
 package tools;
 
 import java.sql.*;
+import java.util.UUID;
 
 import db.Database;
 
@@ -22,8 +23,8 @@ public class UserTools {
 	}
 	public static boolean userExists(int id) throws SQLException{
 		Connection c = Database.getMySQLConnection();
-				
-		String query = "SELECT * FROM users WHERE user_id='"+id+"';";
+		
+		String query = "SELECT * FROM users WHERE id='"+id+"';";
 		java.sql.Statement st = c.createStatement();
 		ResultSet rs = st.executeQuery(query);
 		while(rs.next())
@@ -75,25 +76,29 @@ public class UserTools {
 			
 	}
 
-	public static int insereConnexion(int id_user, boolean b) throws SQLException {
+	public static String insereConnexion(int id_user, boolean b) throws SQLException {
 		Connection c = Database.getMySQLConnection();
 		Timestamp now = new Timestamp(System.currentTimeMillis());
 		
-		PreparedStatement query = c.prepareStatement("INSERT INTO connections VALUE(null,?,?,?,false)");
-		query.setInt(1,id_user);
-		query.setTimestamp(2, now);
-		query.setBoolean(3, false);
+		PreparedStatement query = c.prepareStatement("INSERT INTO connections VALUE(?,?,?,?,false)");
+		
+		String key = UUID.randomUUID().toString();
+		
+		query.setString(1, key);
+		query.setInt(2,id_user);
+		query.setTimestamp(3, now);
+		query.setBoolean(4, false);
 
 		query.executeUpdate();
 		
-		PreparedStatement query1 = c.prepareStatement("SELECT conn_id FROM connections WHERE times = ? and user_id = ?");
+		PreparedStatement query1 = c.prepareStatement("SELECT conn_key FROM connections WHERE times = ? and user_id = ?");
 		query1.setTimestamp(1, now);
 		query1.setInt(2, id_user);
 		
 		ResultSet rs = query1.executeQuery();
 		rs.next();
 		
-		return rs.getInt(1);
+		return rs.getString(1);
 	}
 	
 	public static int insereNouvelUser(String login, String password, String nom, String prenom) throws SQLException{
@@ -108,90 +113,59 @@ public class UserTools {
 	}
 
 	public static boolean keyVerified(String key) throws SQLException {
-		return true;
-		/*Connection c = Database.getMySQLConnection();
+		Connection c = Database.getMySQLConnection();
 		
-		String query = "SELECT user_id FROM connections WHERE expired=false and conn_id=UNHEX(+'"+key+"');";
+		String query = "SELECT user_id FROM connections WHERE expired=false and conn_key=+'"+key+"';";
 		java.sql.Statement st = c.createStatement();
 		ResultSet rs = st.executeQuery(query);
-		System.err.println("quoi");
 		
-		while(rs.next()) {
+		/*while(rs.next()) {
 			int user_id = rs.getInt("user_id");
 			System.out.println(user_id);
-		}
-		return rs.next();*/
-		//System.out.println(rs.getInt("user_id"));
-		
-		//return rs.getString(1)!=null;
+		}*/
+		return rs.next();
 	}
 	
 	public static int logout(String key, boolean state) throws SQLException {
 		
 		Connection c = Database.getMySQLConnection();
-		String query = "Update connections SET expired=true WHERE conn_id=UNHEX('"+key+"');";
+		String query = "Update connections SET expired=1 WHERE conn_key='"+key+"';";
 		java.sql.Statement st= c.createStatement();
 		st.executeUpdate(query);
 		st.close();
 		c.close();
-		return 0;
+		return 1;
 	}
 
 	public static String getKey(String login) throws SQLException {
 		Connection c = Database.getMySQLConnection();
 		
 		int user_id = getIdUser(login); 
-		String query = "SELECT HEX(conn_id) FROM connections WHERE expired=false and user_id='"+user_id+"';";
+		String query = "SELECT conn_key FROM connections WHERE expired=false and user_id='"+user_id+"';";
 		java.sql.Statement st = c.createStatement();
 		ResultSet rs = st.executeQuery(query);
 		rs.next();
-		
 		return rs.getString(1);
 	}
 	public static int getIdFromKey(String key) throws SQLException {
 		Connection c = Database.getMySQLConnection();
 		
-		String query = "SELECT user_id FROM connections WHERE and conn_id=UNHEX(+'"+key+"');";
+		String query = "SELECT user_id FROM connections WHERE expired=false and conn_key=+'"+key+"';";
 		java.sql.Statement st = c.createStatement();
 		ResultSet rs = st.executeQuery(query);
 		rs.next();
-		
 		return rs.getInt(1);
 	}
 
-	public static boolean isFriend(int from_id, int to_id) throws SQLException {
+	public static String getLogin(int id_user) throws SQLException {
 		Connection c = Database.getMySQLConnection();
 		
-		String query = "SELECT * FROM friends WHERE from_id='"+from_id+"' and to_id='"+to_id+"';";
-		java.sql.Statement st = c.createStatement();
-		ResultSet rs = st.executeQuery(query);
-		
-		boolean res =rs.next();
-		st.close();
-		c.close();
-		
-		return res;
-	}
-	public static void addFriend(int idA, int friend_id) throws SQLException {
-		
-		Timestamp now = new Timestamp(System.currentTimeMillis());
-		Connection c = Database.getMySQLConnection();
-		String query = "INSERT INTO users VALUE('"+idA+"','"+friend_id+"','"+now+"');";
-		java.sql.Statement st = c.createStatement();
-		st.executeUpdate(query);
-		st.close();
-		c.close();		
-	
-	}
-	public static String getLogin(int id_user) {
-		Connection c = Database.getMySQLConnection();
-		
-		String query = "SELECT id FROM users WHERE login='"+login+"';";
+		String query = "SELECT id FROM users WHERE id='"+id_user+"';";
 		java.sql.Statement st = c.createStatement();
 		ResultSet rs = st.executeQuery(query);
 		rs.next();
 
-		return rs.getInt(1);
+		return rs.getString(1);
 	}
 	
 }

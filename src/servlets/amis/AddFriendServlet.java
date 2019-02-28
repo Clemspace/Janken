@@ -1,4 +1,4 @@
-package servlet.amis;
+package servlets.amis;
 
 import java.io.IOException;
 import java.io.PrintWriter;

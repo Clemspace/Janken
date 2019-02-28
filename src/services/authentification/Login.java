@@ -20,11 +20,11 @@ public class Login {
 			
 			JSONObject retour = new JSONObject();
 			
-			int conn_id = tools.UserTools.insereConnexion(id_user,false);
+			String conn_key = tools.UserTools.insereConnexion(id_user,false);
 			
 			retour.put("id", id_user);
 			retour.put("login", login);
-			retour.put("conn_id",conn_id);
+			retour.put("conn_key",conn_key);
 			
 			return retour;
 			

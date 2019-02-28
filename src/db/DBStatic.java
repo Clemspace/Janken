@@ -2,7 +2,7 @@ package db;
 
 
 public class DBStatic {
-	public static boolean mysql_pooling = true;
+	public static boolean mysql_pooling = false;
 	public static String mysql_host = "localhost";
 	public static String mysql_db = "janken";
 	public static String mysql_username = "root";

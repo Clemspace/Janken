@@ -25,7 +25,7 @@ public class AddCommentServlet extends HttpServlet {
 			
 			String key=requete.getParameter("key");
 			String text=requete.getParameter("text");
-			rep=commentaires.AddComment.addComment(key, text).toString();
+			rep=services.commentaires.AddComment.addComment(key, text).toString();
 		}
 		
 		reponse.setContentType("text/plain");

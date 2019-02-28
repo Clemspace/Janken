@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import org.json.JSONException;
 import org.json.JSONObject;
 import services.ErrorJSON;
+import tools.FriendTools;
 import tools.UserTools;
 
 public class AddFriend {
@@ -12,11 +13,12 @@ public static JSONObject addFriend(String key, String friend_login){
 		
 		try{
 			if(!UserTools.keyVerified(key))
-				return ErrorJSON.serviceRefused("Non connecté!!!", 4);
+				return ErrorJSON.serviceRefused("Non connecté!!!", -1);
 			
 			int idA=UserTools.getIdFromKey(key);
+			
 			int friend_id=UserTools.getIdUser(friend_login);
-		
+
 			if(key==null||friend_login==null)
 				return ErrorJSON.serviceRefused("Paramètres manquants", -1);
 			
@@ -25,10 +27,10 @@ public static JSONObject addFriend(String key, String friend_login){
 		
 			if(UserTools.userExists(idA)){
 				if(UserTools.userExists(friend_login)){
-					if(UserTools.isFriend(idA, friend_id)){
+					if(FriendTools.isFriend(idA, friend_id)){
 						return ErrorJSON.serviceAccepted();
 					}else{
-						UserTools.addFriend(idA, friend_id);
+						FriendTools.addFriend(idA, friend_id);
 						return ErrorJSON.serviceAccepted();
 					}
 				}else{

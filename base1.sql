@@ -20,7 +20,7 @@ CREATE TABLE friends(
 	);
 
 CREATE TABLE connections(
-	conn_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+	conn_key VARCHAR(65) PRIMARY KEY,
 	user_id INTEGER,
 	times timestamp,
 	conn_type boolean,
