@@ -32,4 +32,13 @@ public class FriendTools {
 		c.close();		
 	
 	}
+	public static void removeFriend(int idA, int friend_id) throws SQLException {
+		Connection c = Database.getMySQLConnection();
+		String query = "DELETE FROM friends WHERE from-id='"+idA+"' and to_id='"+friend_id+"';";
+		java.sql.Statement st = c.createStatement();
+		st.executeUpdate(query);
+		
+		st.close();
+		c.close();
+	}
 }
