@@ -23,7 +23,11 @@
 		<servlet-name>AddFriend</servlet-name> 
 		<servlet-class>servlets.amis.AddFriendServlet</servlet-class> 
 	</servlet> 
-	 
+	
+	<servlet> 
+		<servlet-name>RemoveFriend</servlet-name> 
+		<servlet-class>servlets.amis.RemoveFriendServlet</servlet-class> 
+	</servlet> 
 	 
 	 
 	<!-- Servlet mapping authentification--> 
@@ -36,6 +40,7 @@
 		<servlet-name>Login</servlet-name> 
 		<url-pattern>/servlets/authentification/LoginServlet</url-pattern> 
 	</servlet-mapping> 
+	
 	<servlet-mapping> 
 		<servlet-name>Logout</servlet-name> 
 		<url-pattern>/servlets/authentification/LogoutServlet</url-pattern> 
@@ -45,6 +50,11 @@
 	<servlet-mapping> 
 		<servlet-name>AddFriend</servlet-name> 
 		<url-pattern>/servlets/amis/AddFriendServlet</url-pattern> 
+	</servlet-mapping> 
+	
+	<servlet-mapping> 
+		<servlet-name>RemoveFriend</servlet-name> 
+		<url-pattern>/servlets/amis/RemoveFriendServlet</url-pattern> 
 	</servlet-mapping> 
 
 </web-app>

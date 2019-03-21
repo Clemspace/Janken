@@ -2,6 +2,9 @@ package services.amis;
 
 import java.sql.SQLException;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import services.ErrorJSON;
 import tools.FriendTools;
 import tools.UserTools;
@@ -26,10 +29,10 @@ public static JSONObject removeFriend(String key, String friend_login){
 			if(UserTools.userExists(idA)){
 				if(UserTools.userExists(friend_login)){
 					if(!FriendTools.isFriend(idA, friend_id)){
-						return ErrorJSON.serviceAccepted();
+						return ErrorJSON.serviceAccepted(friend_login+" n'est pas dans votre liste d'amis.");
 					}else{
 						FriendTools.removeFriend(idA, friend_id);
-						return ErrorJSON.serviceAccepted();
+						return ErrorJSON.serviceAccepted("Vous avez supprimé "+friend_login+" de votre liste d'amis.");
 					}
 				}else{
 					System.out.println("Ami imaginaire");

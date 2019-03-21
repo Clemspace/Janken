@@ -28,10 +28,10 @@ public static JSONObject addFriend(String key, String friend_login){
 			if(UserTools.userExists(idA)){
 				if(UserTools.userExists(friend_login)){
 					if(FriendTools.isFriend(idA, friend_id)){
-						return ErrorJSON.serviceAccepted();
+						return ErrorJSON.serviceAccepted("Vous avez déjà ajouté "+friend_login+" en ami.");
 					}else{
 						FriendTools.addFriend(idA, friend_id);
-						return ErrorJSON.serviceAccepted();
+						return ErrorJSON.serviceAccepted("Vous avez ajouté "+friend_login+" en ami.");
 					}
 				}else{
 					System.out.println("Ami imaginaire");
