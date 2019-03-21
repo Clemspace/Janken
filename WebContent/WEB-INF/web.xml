@@ -29,7 +29,18 @@
 		<servlet-class>servlets.amis.RemoveFriendServlet</servlet-class> 
 	</servlet> 
 	 
-	 
+	 <!-- Servlets commentaires --> 
+	<servlet> 
+		<servlet-name>AddComment</servlet-name> 
+		<servlet-class>servlets.commentaires.AddCommentServlet</servlet-class> 
+	</servlet> 
+	
+	<!-- Servlets recherche --> 
+	<servlet> 
+		<servlet-name>Search</servlet-name> 
+		<servlet-class>servlets.recherche.SearchServlet</servlet-class> 
+	</servlet> 
+	
 	<!-- Servlet mapping authentification--> 
 	<servlet-mapping> 
 		<servlet-name>CreateUser</servlet-name> 
@@ -56,5 +67,17 @@
 		<servlet-name>RemoveFriend</servlet-name> 
 		<url-pattern>/servlets/amis/RemoveFriendServlet</url-pattern> 
 	</servlet-mapping> 
+	
+	<!-- Servlet mapping commentaires--> 
+	<servlet-mapping> 
+		<servlet-name>AddComment</servlet-name> 
+		<url-pattern>/servlets/commentaires/AddCommentServlet</url-pattern> 
+	</servlet-mapping>
+	
+	<!-- Servlet mapping commentaires--> 
+	<servlet-mapping> 
+		<servlet-name>Search</servlet-name> 
+		<url-pattern>/servlets/recherche/SearchServlet</url-pattern> 
+	</servlet-mapping>
 
 </web-app>

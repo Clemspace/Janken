@@ -33,8 +33,6 @@ public class AddFriendServlet extends HttpServlet {
 		
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
 		}
 	}
 }

@@ -11,12 +11,8 @@ public class RemoveFriendTest {
 
 	public static void main(String[] args) {
 		JSONObject r;
-		try {
-			r = RemoveFriend.removeFriend(UserTools.getKey("Clemspace"), "Anthylnem");
-			System.out.println(r.toString());
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		r = RemoveFriend.removeFriend(UserTools.getKey("Clemspace"), "Anthylnem");
+		System.out.println(r.toString());
 	}
 
 }

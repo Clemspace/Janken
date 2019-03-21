@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.UUID;
 
 import db.Database;
+import services.ErrorJSON;
 
 public class UserTools {
 	
@@ -137,15 +138,19 @@ public class UserTools {
 		return 1;
 	}
 
-	public static String getKey(String login) throws SQLException {
-		Connection c = Database.getMySQLConnection();
-		
-		int user_id = getIdUser(login); 
-		String query = "SELECT conn_key FROM connections WHERE expired=false and user_id='"+user_id+"';";
-		java.sql.Statement st = c.createStatement();
-		ResultSet rs = st.executeQuery(query);
-		rs.next();
-		return rs.getString(1);
+	public static String getKey(String login){
+		try {
+			Connection c = Database.getMySQLConnection();
+			
+			int user_id = getIdUser(login); 
+			String query = "SELECT conn_key FROM connections WHERE expired=false and user_id='"+user_id+"';";
+			java.sql.Statement st = c.createStatement();
+			ResultSet rs = st.executeQuery(query);
+			rs.next();
+			return rs.getString(1);
+		} catch (SQLException e) {
+			return ErrorJSON.serviceRefused(login+" n'a pas de key", 1000).toString();
+		}
 	}
 	public static int getIdFromKey(String key) throws SQLException {
 		Connection c = Database.getMySQLConnection();
@@ -160,12 +165,24 @@ public class UserTools {
 	public static String getLogin(int id_user) throws SQLException {
 		Connection c = Database.getMySQLConnection();
 		
-		String query = "SELECT id FROM users WHERE id='"+id_user+"';";
+		String query = "SELECT login FROM users WHERE id='"+id_user+"';";
 		java.sql.Statement st = c.createStatement();
 		ResultSet rs = st.executeQuery(query);
 		rs.next();
 
 		return rs.getString(1);
+	}
+	public static boolean userConnected(String key) throws SQLException {
+		Connection c = Database.getMySQLConnection();
+		String query = "SELECT * FROM connections WHERE conn_key='"+key+"' and expired=false;";
+		java.sql.Statement st = c.createStatement();
+		ResultSet rs = st.executeQuery(query);
+		while(rs.next())
+			return true;
+		
+		st.close();
+		c.close();
+		return false;
 	}
 	
 }

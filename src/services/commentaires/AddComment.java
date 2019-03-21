@@ -27,12 +27,10 @@ public class AddComment {
 			BasicDBObject author = new BasicDBObject();
 			int id_user;
 			id_user = UserTools.getIdUser(key);
-
+				
 			String login = UserTools.getLogin(id_user);
-			author.put("id", id_user);
-			author.put("login", login);
 			
-			comment.put("auteur", author);
+			comment.put("auteur", login);
 			comment.put("texte", text);
 			comment.put("date", dod);
 			coll.insertOne(comment);
@@ -41,7 +39,7 @@ public class AddComment {
 			query_msg.put("author", author);
 			query_msg.put("comment", comment);
 			
-			return new JSONObject().put("OK",1);
+			return new JSONObject().put("Message envoyé",1);
 			
 		} catch (UnknownHostException u) {
 			return ErrorJSON.serviceRefused("UnknownHostException", 0);

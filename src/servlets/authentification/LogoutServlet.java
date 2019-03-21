@@ -3,7 +3,6 @@ package servlets.authentification;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -28,12 +27,8 @@ public class LogoutServlet extends HttpServlet {
 		if(pars.containsKey("login"))
 		{
 			String key;
-			try {
-				key = UserTools.getKey(requete.getParameter("login"));
-				rep = services.authentification.Logout.logout(key, false);		
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			key = UserTools.getKey(requete.getParameter("login"));
+			rep = services.authentification.Logout.logout(key, false);
 			
 			
 		}
