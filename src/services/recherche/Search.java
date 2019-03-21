@@ -15,8 +15,12 @@ import tools.UserTools;
 public class Search {
 	public static JSONObject search(String key, String query, String friend) {
 		try {
+			if(key == null || query == null || friend == null) 
+				return ErrorJSON.serviceRefused("Argument missing", -1);
+			
 			if(!UserTools.userConnected(key))
 				return ErrorJSON.serviceRefused("Non connecté", 1000);
+			
 			List<Document> results = MongoTools.findComment(query, friend);
 			
 			return ErrorJSON.serviceAccepted("Résultats de la recherche : "+results);

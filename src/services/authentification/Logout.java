@@ -12,7 +12,7 @@ public class Logout{
 	public static JSONObject logout(String key, boolean status){
 		
 		if (key == null)
-			return services.ErrorJSON.serviceRefused("parametre manquant", -1);
+			return services.ErrorJSON.serviceRefused("Argument Missing", -1);
 		try {
 			if(UserTools.keyVerified(key)){
 				JSONObject retour = new JSONObject();

@@ -60,19 +60,18 @@ public class UserTools {
 	}
 	
 	public static int getActiveConnId(String key) throws SQLException {
+		Connection c = Database.getMySQLConnection();
 		
-		Connection conn = Database.getMySQLConnection();
+		String query="SELECT user_id FROM connections WHERE conn_key='"+key+"' AND expired=FALSE;";
 		
-		String query="SELECT id FROM sessions WHERE '"+key+"' AND expired=FALSE";
-		
-		Statement st=(Statement) conn.createStatement();
+		Statement st=c.createStatement();
 		ResultSet rs=st.executeQuery(query);
 		
 		rs.next();
-		int ret=rs.getInt("conn_id");
+		int ret=rs.getInt("user_id");
 		rs.close();
 		st.close();
-		conn.close();
+		c.close();
 		return ret;
 			
 	}

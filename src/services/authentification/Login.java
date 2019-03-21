@@ -8,7 +8,8 @@ public class Login {
 	
 	public static JSONObject login(String login, String password) {
 		try {
-			if(login == null || password == null) return services.ErrorJSON.serviceRefused("Wrong Argument",-1);
+			if(login == null || password == null) 
+				return services.ErrorJSON.serviceRefused("Argument Missing",-1);
 			
 			boolean is_user = tools.UserTools.userExists(login);
 			if(!is_user) return services.ErrorJSON.serviceRefused("Unknown User : "+login,1);

@@ -12,6 +12,9 @@ public class AddFriend {
 public static JSONObject addFriend(String key, String friend_login){
 		
 		try{
+			if(key == null || friend_login == null) 
+				return ErrorJSON.serviceRefused("Argument missing", -1);
+			
 			if(!UserTools.keyVerified(key))
 				return ErrorJSON.serviceRefused("Non connecté!!!", -1);
 			

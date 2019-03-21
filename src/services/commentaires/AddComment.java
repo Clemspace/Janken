@@ -20,14 +20,18 @@ public class AddComment {
 		
 	public static JSONObject addComment(String key, String text) {
 		try {
+			if(key == null || text == null) 
+				return ErrorJSON.serviceRefused("Argument Missing", -1);
+			
 			GregorianCalendar calendar = new java.util.GregorianCalendar();
 			Date dod = calendar.getTime();
 			Document comment = new Document();
 			MongoCollection<Document> coll = Database.getMongoCollection("messages");
 			BasicDBObject author = new BasicDBObject();
-			int id_user;
-			id_user = UserTools.getIdUser(key);
-				
+			
+			int id_user = UserTools.getActiveConnId(key);
+			System.out.println("test");
+
 			String login = UserTools.getLogin(id_user);
 			
 			comment.put("auteur", login);
@@ -46,7 +50,7 @@ public class AddComment {
 		} catch (JSONException e) {
 			return ErrorJSON.serviceRefused("JSONException", 100);
 		} catch (SQLException e) {
-			return ErrorJSON.serviceRefused("JSONException", 1000);
+			return ErrorJSON.serviceRefused("SQLException1", 1000);
 		}
 	}
 
