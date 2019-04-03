@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd"> 
 <web-app> 
-	<display-name>Projets_Janken</display-name>
+	<display-name>Janken</display-name>
 	
 	<!-- Servlets authentification --> 
 	<servlet> 
@@ -44,40 +44,49 @@
 	<!-- Servlet mapping authentification--> 
 	<servlet-mapping> 
 		<servlet-name>CreateUser</servlet-name> 
-		<url-pattern>/servlets/authentification/CreateUserServlet</url-pattern> 
+		<url-pattern>/CreateUser</url-pattern> 
 	</servlet-mapping> 
 	
 	<servlet-mapping> 
 		<servlet-name>Login</servlet-name> 
-		<url-pattern>/servlets/authentification/LoginServlet</url-pattern> 
+		<url-pattern>/Login</url-pattern> 
 	</servlet-mapping> 
 	
 	<servlet-mapping> 
 		<servlet-name>Logout</servlet-name> 
-		<url-pattern>/servlets/authentification/LogoutServlet</url-pattern> 
+		<url-pattern>/Logout</url-pattern> 
 	</servlet-mapping> 
 	
 	<!-- Servlet mapping amis--> 
 	<servlet-mapping> 
 		<servlet-name>AddFriend</servlet-name> 
-		<url-pattern>/servlets/amis/AddFriendServlet</url-pattern> 
+		<url-pattern>/AddFriend</url-pattern> 
 	</servlet-mapping> 
 	
 	<servlet-mapping> 
 		<servlet-name>RemoveFriend</servlet-name> 
-		<url-pattern>/servlets/amis/RemoveFriendServlet</url-pattern> 
+		<url-pattern>/RemoveFriend</url-pattern> 
 	</servlet-mapping> 
 	
 	<!-- Servlet mapping commentaires--> 
 	<servlet-mapping> 
 		<servlet-name>AddComment</servlet-name> 
-		<url-pattern>/servlets/commentaires/AddCommentServlet</url-pattern> 
+		<url-pattern>/AddComment</url-pattern> 
 	</servlet-mapping>
 	
 	<!-- Servlet mapping commentaires--> 
 	<servlet-mapping> 
 		<servlet-name>Search</servlet-name> 
-		<url-pattern>/servlets/recherche/SearchServlet</url-pattern> 
+		<url-pattern>/Search</url-pattern> 
 	</servlet-mapping>
+	
+	<filter>
+	<filter-name>CorsFilter</filter-name>
+	<filter-class>CORSFilter</filter-class>
+	</filter>
+	<filter-mapping>
+	<filter-name>CorsFilter</filter-name>
+	<url-pattern>/*</url-pattern>
+	</filter-mapping>
 
 </web-app>

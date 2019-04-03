@@ -19,8 +19,9 @@ public class ErrorJSON {
 			  errorType = "Erreur JSON";
 		 }
 		 try {
+			json.put("status", "error");
 			json.put("Type erreur", errorType);
-			json.put(message,codeErreur);
+			json.put("description",message+codeErreur);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
