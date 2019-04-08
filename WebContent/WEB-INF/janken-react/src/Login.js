@@ -65,7 +65,7 @@ class Login extends Component{
 		} else {
 			this.setState({status :""});
 			this.setState({conn_key:response.data["conn_key"]});
-			this.state.getConnected();
+			this.state.getConnected(this.state.login);
 		}
 	}
 }

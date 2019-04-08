@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './index.css';
+
 import NavigationPanel from './NavigationPanel';
 import SignUp from './SignUp';
 import FormMessage from './FormMessage';
+import ListMessage from './ListMessage';
 
 class MainPage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {connected : "false",
 					  currentPage : "connection",
-					  getConnected : this.getConnected.bind(this)};
+					  getConnected : this.getConnected.bind(this),
+					  login : ""};
 		this.getConnected = this.getConnected.bind(this)
 	}
 	
-	getConnected() {
-		this.setState({connected : "true", currentPage : "wall"});
+	getConnected(log) {
+		this.setState({connected : "true", currentPage : "wall", login : log});
 	}
 	
 	setLogout() {
@@ -24,7 +27,7 @@ class MainPage extends Component {
 	}
 	
 	render() {
-		if(this.currentPage === 'signUp') {
+		if(this.state.currentPage === 'signUp') {
 			return (
 				<div>
 					<SignUp/>		
@@ -39,7 +42,8 @@ class MainPage extends Component {
 		} else if (this.state.connected === "true") {
 			return (<div>
 					<NavigationPanel connected = {this.state.connected} getConnected = {this.getConnected} setLogout = {this.setLogout}/>
-					<FormMessage/>
+					<FormMessage login = {this.state.login} />
+					<Timeline login = {this.state.login} />
 				</div>);
 		}
 	}
