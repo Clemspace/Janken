@@ -13,18 +13,21 @@ class NavigationPanel extends Component {
 	}
 	
 	render() {
-		if ( this.state.isconnected ==='false'){
-			return( <nav>
-			<Login getConnected = {this.state.getConnected}/>
+
+		return (<nav> </nav>)
+		// console.log(this.state.isconnected);
+		// this.setState(isconnected);
+		// if ( this.state.isconnected === "false"){
+		// 	return( <nav>
+		// 	<Login getConnected = {this.state.getConnected}/>		
+		// 	</nav>);
+		// }else if(this.state.isconnected === "true"){
+		// return( <nav>
+		// 	<Logout setLogout = {this.state.setLogout}/>
 			
-			</nav>);
-		}else{
-		return( <nav>
-			<Logout setLogout = {this.state.setLogout}/>
-			
-			</nav>);
+		// 	</nav>);
 		
-		}
+		// }
 	}
 }
 

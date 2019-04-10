@@ -7,7 +7,7 @@ class ListMessage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {login : props.login,
-					  listMessage : ""}
+					  listMessage : []};
 		
 	}
 

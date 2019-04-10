@@ -7,7 +7,7 @@ class FormMessage extends Component {
 		super(props);
 		this.state = {login : props.login,
 					text : ""}
-		
+		this.onChangeText = this.onChangeText.bind(this);
 	}
 
 	render(){
@@ -15,8 +15,8 @@ class FormMessage extends Component {
 			<div className="formMessage">
 				<form action="">
 					<table id="formMessage">
-						<tr> <textarea name="text" rows="5" cols="30" value="{this.state.text} onChange={this.onChangeText}"> Saisissez votre message </textarea> </tr>
-						<tr> <input type="button" onClick={(event) => this.send()}/> </tr>
+						<tr> <textarea name="text" rows="5" cols="30" value={this.state.text} onChange={this.onChangeText}> Saisissez votre message </textarea> </tr>
+						<tr> <input type="button" onClick={(event) => this.send()} value="Envoyer"/> </tr>
 					</table>
 				</form>
 		     </div>);

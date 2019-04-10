@@ -6,6 +6,9 @@ import NavigationPanel from './NavigationPanel';
 import SignUp from './SignUp';
 import FormMessage from './FormMessage';
 import ListMessage from './ListMessage';
+import Timeline from './Timeline';
+import Login from './Login';
+import Logout from './Logout';
 
 class MainPage extends Component {
 	constructor(props) {
@@ -33,15 +36,15 @@ class MainPage extends Component {
 					<SignUp/>		
 				</div>);
 
-		} else if (this.state.connected === "false") {
+		} else if ((this.state.connected === "false") && (this.state.currentPage === "connection")) {
 			return (<div>
-					<NavigationPanel connected = {this.state.connected} getConnected = {this.getConnected} setLogout = {this.setLogout}/>
+					<Login getConnected = {this.state.getConnected}/>
 					<button class="createUser" onClick = {(event) => this.setSignUp }> <h3> &rarr; Cr&eacute;er un compte &larr;</h3> </button>
 				</div>);
 
-		} else if (this.state.connected === "true") {
+		} else if ((this.state.connected === "true") && (this.state.currentPage === "wall")) {
 			return (<div>
-					<NavigationPanel connected = {this.state.connected} getConnected = {this.getConnected} setLogout = {this.setLogout}/>
+					<Logout setLogout = {this.state.setLogout}/>
 					<FormMessage login = {this.state.login} />
 					<Timeline login = {this.state.login} />
 				</div>);

@@ -7,7 +7,9 @@ class Logout extends Component {
 		this.state = {setLogout : props.setLogout};
 	}
 	render() {
-		return (<button onClick = {(event) => this.state.setLogout} > Logout </button>);
+		return (<div className="logout">
+				<button onClick = {(event) => this.state.setLogout} > Logout </button>
+				</div>);
 	}
 	
 }

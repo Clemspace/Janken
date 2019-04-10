@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './index.css';
+import axios from 'axios';
 
 import ListMessage from './ListMessage';
 
@@ -9,9 +10,9 @@ class Timeline extends Component {
 		this.state = {login : props.login,
 					  listMessage : "",
 					  query : "",
-					  friend = props.friend}
+					  friend : props.friend}
 
-		axios.get("http://localhost:8080/SearchComment/",{params:{login:this.state.login,
+		axios.get("http://localhost:8080/SearchServlet/",{params:{login:this.state.login,
 																  query:this.state.query,
 																  friend:this.state.text}}).then(
 																		response => this.response_timeline(response));
@@ -29,12 +30,14 @@ class Timeline extends Component {
 	}
 
 	render() {
+		console.log(this.state.login);
 		return (
 			<div className="timeline">
+			<h1> Timeline </h1>
 			<ListMessage login={this.state.login} listMessage={this.state.listMessage}/>
 			</div>
 			)
 	}
 }
 
-export default ListMessage;
+export default Timeline;
