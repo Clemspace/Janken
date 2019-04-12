@@ -1,9 +1,13 @@
 package tools;
 
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import db.Database;
 
@@ -40,5 +44,18 @@ public class FriendTools {
 		
 		st.close();
 		c.close();
+	}
+	public static int[] listFriends(int idUser) throws SQLException,JSONException{
+		Connection c = Database.getMySQLConnection();
+		String query = "Select to_id FROM friends WHERE from_id='"+idUser+"'';";
+		java.sql.Statement st = c.createStatement();
+		ResultSet rs = st.executeQuery(query);
+		Array array = rs.getArray(0);
+		int[]response = (int[])array.getArray();
+		
+		rs.close();
+		st.close();
+		c.close();
+		return response;
 	}
 }
