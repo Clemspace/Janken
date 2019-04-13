@@ -2,13 +2,16 @@ package services.authentification;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import tools.UserTools;
+
 import java.sql.SQLException;
 
 public class Login {
 	
 	public static JSONObject login(String login, String password) {
 		try {
-			if(login == null || password == null) 
+			if(login.isEmpty() || password.isEmpty()) 
 				return services.ErrorJSON.serviceRefused("Argument Missing",-1);
 			
 			boolean is_user = tools.UserTools.userExists(login);
@@ -26,6 +29,7 @@ public class Login {
 			retour.put("id", id_user);
 			retour.put("login", login);
 			retour.put("conn_key",conn_key);
+			retour.put("nomprenom",UserTools.getNomPrenom(login));
 			
 			return retour;
 			

@@ -13,7 +13,7 @@ public class CreateUser {
 	
 	public static JSONObject createUser(String login, String password, String nom, String prenom) {
 		try {
-			if(login == null || password == null || nom == null || prenom == null) {
+			if(login.isEmpty() || password.isEmpty() || nom.isEmpty() || prenom.isEmpty()) {
 				return ErrorJSON.serviceRefused("Argument Missing",-1);
 			}
 			boolean is_user = UserTools.userExists(login);

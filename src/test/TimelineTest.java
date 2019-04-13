@@ -2,12 +2,12 @@ package test;
 
 import org.json.JSONObject;
 
-import services.commentaires.AddComment;
+import services.commentaires.Timeline;
 import tools.UserTools;
 
-public class AddCommentTest {
+public class TimelineTest {
 	public static void main(String[] args) {
-		JSONObject o = AddComment.addComment(UserTools.getKey("Anthylnem"),"Wesh");
+		JSONObject o = Timeline.timeline(UserTools.getKey("test"));
 		System.out.println(o.toString());
 	}
 }

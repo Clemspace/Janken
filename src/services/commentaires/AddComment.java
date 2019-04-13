@@ -34,6 +34,7 @@ public class AddComment {
 
 			String login = UserTools.getLogin(id_user);
 			
+			comment.put("id",id_user);
 			comment.put("auteur", login);
 			comment.put("texte", text);
 			comment.put("date", dod);

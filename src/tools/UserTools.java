@@ -1,7 +1,12 @@
 package tools;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import db.Database;
 import services.ErrorJSON;
@@ -72,8 +77,7 @@ public class UserTools {
 		rs.close();
 		st.close();
 		c.close();
-		return ret;
-			
+		return ret;	
 	}
 
 	public static String insereConnexion(int id_user, boolean b) throws SQLException {
@@ -182,6 +186,23 @@ public class UserTools {
 		st.close();
 		c.close();
 		return false;
+	}
+	
+	public static JSONObject getNomPrenom(String login) throws SQLException, JSONException {
+		Connection c = Database.getMySQLConnection();
+		String query = "SELECT nom,prenom FROM users WHERE login='"+login+"';";
+		java.sql.Statement st = c.createStatement();
+		ResultSet rs = st.executeQuery(query);
+		
+		JSONObject o = new JSONObject();
+		while(rs.next()) {
+			o.put("nom",rs.getString("nom"));
+			o.put("prenom",rs.getString("prenom"));
+		}
+		
+		st.close();
+		c.close();
+		return o;
 	}
 	
 }
