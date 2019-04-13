@@ -11,6 +11,7 @@ import org.json.JSONObject;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCursor;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.util.JSON;
 
@@ -43,7 +44,7 @@ public class Timeline {
 			
 			BasicDBObject query = new BasicDBObject();
 			query.put("user_id", new BasicDBObject("$in", followed_ids));
-			DBCursor msg = coll.find(query);
+			FindIterable<Document> msg = coll.find(query);
 			msg.sort(new BasicDBObject("date",-1));
 			while (msg.hasNext()) {
 				JSONObject post = new JSONObject();
