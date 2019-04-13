@@ -8,35 +8,38 @@ class Login extends Component{
 		this.state = {login :"",
 					  password : "",
 					  getConnected : props.getConnected,
-					  conn_key:""};
+					  conn_key:"",
+					  setSignUp : props.setSignUp,
+					  mdp : "false"};
 
 		this.onChangeLogin = this.onChangeLogin.bind(this);
 		this.onChangePassword = this.onChangePassword.bind(this);
+
 	}
 
 	render(){
 		return (
 		<div>
-			<h3 id="rouge"> Connexion </h3>
+		<div class="login-box">
+				<p class="title"> Janken</p>
 				<form>
-					<table id="login" style={{height:'200px'}}>
-		   				<tr> 
-		     				<td> <label for='login_id'>Login</label> </td>
-		     				<td> <input class="form" type="text" value={this.state.login} onChange={this.onChangeLogin}/> </td>
-		   				</tr>
-		   				<tr> 
-		     				<td> <label for='password'>Password</label> </td>
-		     				<td> <input class="form" type="password" value={this.state.password} onChange={this.onChangePassword}/> </td>       
-		   				</tr>
-		   				<tr> 
-		     				<td colspan='2' align="right"> <a class="password" href=""> N&apos;oubliez pas votre mot de passe è-é</a> </td>
-		   				</tr>
-		   				<tr>
-		     				<td colspan='2' align="right"/>
-		     					<input type="button" onClick={(event) => this.send()} class="btn btn-danger" value="Ikuzo! 行くぞ"/>
-		    				</tr> 
-		     		</table>
+				<h1>Login</h1>
+					<div class="textbox">
+					<h5 class="erreur"> {this.state.status} {this.state.desc}</h5>
+		     			<i class="fas fa-user"></i>
+		     			<input type="text" placeholder="Username" value={this.state.login} onChange={this.onChangeLogin}/>
+					</div>
+
+					<div class="textbox">
+						<i class="fas fa-lock"></i>
+						<input type="password" placeholder="Password" value={this.state.password} onChange={this.onChangePassword}/>
+					</div>
+		     		<a href="" onClick={(event) => this.mdp()} > N&apos;oubliez pas votre mot de passe è-é </a>
+
+		     		<input type="button" onClick={(event) => this.send()} class="btn" value="Ikuzo! 行くぞ"/>
+		     		<button type="button" class="btn" onClick = {(event) => this.state.setSignUp()} > <h3> &rarr; Cr&eacute;er un compte &larr;</h3> </button>
 		     	</form>
+          </div>
           </div>);
 	}
 
@@ -59,13 +62,12 @@ class Login extends Component{
 	}
 
 	response_login(response) {
-		console.log(response.data);
 		if(response.data["status"] === "error") {
 			this.setState({status : "error", desc : response.data["description"]});
 		} else {
 			this.setState({status :""});
 			this.setState({conn_key:response.data["conn_key"]});
-			this.state.getConnected(this.state.login);
+			this.state.getConnected(this.state.login,response.data["nomprenom"]["nom"],response.data["nomprenom"]["prenom"]);
 		}
 	}
 }

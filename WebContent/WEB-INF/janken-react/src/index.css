@@ -23,7 +23,13 @@ html[data-theme='dark'] {
 all{
   box-sizing: content-box;
   padding: 0px 0px;
-  
+  background-size : contain;
+
+}
+
+a{
+  color : white;
+  font-size: 14px;
 }
 
 header{
@@ -47,7 +53,9 @@ section#leftpanel{
   width: 30%;
   height: 100%;
   float: left;
-  background-color:#202020;
+  background-color:#15202B;
+  text-align:center;
+  input: center;
 }
 img {
   border-radius: 50%;
@@ -55,41 +63,153 @@ img {
   height:50%;
 }
 section#centerpanel{
+
   display: inline-block;
   width: 70%;
   height: 100%;
   float: center;
-  background-color:	#867979;
-  
+  background-color:	#1C2938;
+
 }
 section#newMessage{
   display: inline-block;
   width: 95%;
-  
+
   background-color:darkslategrey;
   padding-right: inherit;
 }
+
 section#mainWall{
   display: inline-block;
-  width: 95%;
-  
-  background-color:	#A0A0A0;
+  width: inherit;
+  padding-left: 10%;
   padding-right: inherit;
-}
-
-h1{
-  background-color:dimgrey;
-  font-family: "Merriweather", serif;
-  font-size: 32px;
-  
 }
 ul#navmenu li{
   display:inline;
   list-style-type: none;
-  font-family: "Merriweather",sans-serif; 
-  
+  font-family: "Merriweather",sans-serif;
+
 }
 
-.logout {
-	border-width: 10px;
+@import "https://use.fontawesome.com/releases/v5.5.0/css/all.css";
+body{
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background: url(bg.jpg) no					</section>
+-repeat;
+  background-size: cover;
+  background-color : #2c3940;
+}
+.login-box{
+  width: 280px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  color: white;
+}
+.login-box h1{
+  float: left;
+  font-size: 40px;
+  border-bottom: 6px solid #4caf50;
+  margin-bottom: 50px;
+  padding: 13px 0;
+}
+.textbox{
+  width: 100%;
+  overflow: hidden;
+  font-size: 20px;
+  padding: 8px 0;
+  margin: 8px 0;
+  border-bottom: 1px solid #4caf50;
+}
+.textbox i{
+  width: 26px;
+  float: left;
+  text-align: center;
+}
+.textbox input{
+  border: none;
+  outline: none;
+  background: none;
+  color: white;
+  font-size: 18px;
+  width: 80%;
+  float: left;
+  margin: 0 10px;
+}
+.btn{
+  width: 100%;
+  background: none;
+  border: 2px solid #4caf50;
+  color: white;
+  padding: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  margin: 12px 0;
+}
+
+.btn{
+  width: 100%;
+  background: none;
+  border: 2px solid #4caf50;
+  color: white;
+  padding: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  margin: 12px 0;
+}
+
+.title{
+  font-size: 50px;
+  margin: 50px 10px 10px 50px;
+}
+
+.erreur{
+    border-bottom: 0;
+    margin-bottom: 0;
+    padding: 0;
+    color : red;
+}
+.Message{
+  border: 2px solid white;
+  color: white;
+  padding: 5px;
+  font-size: 18px;
+  margin: 12px 0;
+}
+
+.DateMessage{
+  font-size : 8px;
+  color: grey;
+}
+.AuteurMessage{
+
+
+}
+.TextMessage{
+  padding-left: 10%;
+  border-style: solid;
+  border: 10px;
+  border-color: white;
+
+}
+
+.timeline{
+
+}
+
+.text{
+  resize : none;
+  width : 300px;
+  background-color: #163043;
+  border: 2px solid #4caf50;
+  color : white;
+  padding: 7px;
+}
+
+.nomprenom{
+  font-size : 14px;
 }

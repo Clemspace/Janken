@@ -15,8 +15,8 @@ class FormMessage extends Component {
 			<div className="formMessage">
 				<form action="">
 					<table id="formMessage">
-						<tr> <textarea name="text" rows="5" cols="30" value={this.state.text} onChange={this.onChangeText}> Saisissez votre message </textarea> </tr>
-						<tr> <input type="button" onClick={(event) => this.send()} value="Envoyer"/> </tr>
+						<tr> <textarea class="text" name="text" rows="5" cols="30" value={this.state.text} placeholder="Qu'est-ce qui vous passe par la tête?" onChange={this.onChangeText}>  </textarea> </tr>
+						<tr> <input class="btn" type="button" onClick={(event) => this.send()} value="Envoyer"/> </tr>
 					</table>
 				</form>
 		     </div>);
@@ -29,7 +29,7 @@ class FormMessage extends Component {
 	}
 
 	send() {
-			axios.get("http://localhost:8080/AddComment/",{params:{login:this.state.login,
+			axios.get("http://localhost:8080/Projets_Janken/AddComment",{params:{login:this.state.login,
 																				text:this.state.text}}).then(
 																		response => this.response_message(response));
 	}
