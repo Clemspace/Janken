@@ -1,4 +1,4 @@
-/servlets/
 /services/
 /test/
-/tools/
+/db/
+/servlets/

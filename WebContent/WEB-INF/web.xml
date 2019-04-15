@@ -28,6 +28,11 @@
 		<servlet-name>RemoveFriend</servlet-name> 
 		<servlet-class>servlets.amis.RemoveFriendServlet</servlet-class> 
 	</servlet> 
+	
+	<servlet> 
+		<servlet-name>ListFriend</servlet-name> 
+		<servlet-class>servlets.amis.ListFriendServlet</servlet-class> 
+	</servlet> 
 	 
 	 <!-- Servlets commentaires --> 
 	<servlet> 
@@ -38,6 +43,11 @@
 	<servlet> 
 		<servlet-name>Timeline</servlet-name> 
 		<servlet-class>servlets.commentaires.TimelineServlet</servlet-class> 
+	</servlet> 
+	
+	<servlet> 
+		<servlet-name>ListMessageFriend</servlet-name> 
+		<servlet-class>servlets.commentaires.ListMessageFriendServlet</servlet-class> 
 	</servlet> 
 	
 	<!-- Servlets recherche --> 
@@ -73,6 +83,11 @@
 		<url-pattern>/RemoveFriend</url-pattern> 
 	</servlet-mapping> 
 	
+	<servlet-mapping> 
+		<servlet-name>ListFriend</servlet-name> 
+		<url-pattern>/ListFriend</url-pattern> 
+	</servlet-mapping> 
+	
 	<!-- Servlet mapping commentaires--> 
 	<servlet-mapping> 
 		<servlet-name>AddComment</servlet-name> 
@@ -87,6 +102,11 @@
 	<servlet-mapping> 
 		<servlet-name>Search</servlet-name> 
 		<url-pattern>/Search</url-pattern> 
+	</servlet-mapping>
+	
+	<servlet-mapping> 
+		<servlet-name>ListMessageFriend</servlet-name> 
+		<url-pattern>/ListMessageFriend</url-pattern> 
 	</servlet-mapping>
 	
 	<filter>

@@ -18,10 +18,10 @@ public static JSONObject listFriend(String login){
 			int id = tools.UserTools.getIdUser(login);
 			
 			List<Integer> idFriends = FriendTools.listFriends(id);
-			JSONObject o = new JSONObject();
 			
+			JSONObject o = new JSONObject();
 			for(Integer i : idFriends) {
-				o.put("friend", tools.UserTools.getLogin(i));
+				o.append("friend", tools.UserTools.getLogin(i));
 			}
 			
 			return o;
