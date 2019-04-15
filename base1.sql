@@ -36,6 +36,7 @@ CREATE TABLE duel(
 	PRIMARY KEY(from_id, to_id),
 	FOREIGN KEY(from_id) REFERENCES users(id),
 	FOREIGN KEY(to_id) REFERENCES users(id)
+	
 	);
 
 INSERT INTO users VALUE(null,"login","password","Nom","Prenom");

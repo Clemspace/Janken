@@ -50,6 +50,12 @@
 		<servlet-class>servlets.commentaires.ListMessageFriendServlet</servlet-class> 
 	</servlet> 
 	
+	<servlet> 
+		<servlet-name>Timeline</servlet-name> 
+		<servlet-class>servlets.commentaires.TimelineServlet</servlet-class> 
+	</servlet> 
+	
+	
 	<!-- Servlets recherche --> 
 	<servlet> 
 		<servlet-name>Search</servlet-name> 
@@ -94,11 +100,19 @@
 		<url-pattern>/AddComment</url-pattern> 
 	</servlet-mapping>
 	
+<<<<<<< HEAD
 	<servlet-mapping> 
 		<servlet-name>Timeline</servlet-name> 
 		<url-pattern>/Timeline</url-pattern> 
 	</servlet-mapping>
 	
+=======
+		<servlet-mapping> 
+		<servlet-name>Timeline</servlet-name> 
+		<url-pattern>/Timeline</url-pattern> 
+	</servlet-mapping>
+	<!-- Servlet mapping commentaires--> 
+>>>>>>> branch 'master' of https://github.com/Clemspace/Janken.git
 	<servlet-mapping> 
 		<servlet-name>Search</servlet-name> 
 		<url-pattern>/Search</url-pattern> 

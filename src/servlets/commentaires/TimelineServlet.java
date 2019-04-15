@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+<<<<<<< HEAD
 import org.json.JSONObject;
 
 import tools.UserTools;
@@ -28,3 +29,29 @@ public class TimelineServlet extends HttpServlet{
 		out.println(o.toString());
 	}
 }
+=======
+
+import org.json.JSONObject;
+
+import tools.UserTools;
+
+public class TimelineServlet extends HttpServlet{
+
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException,IOException {
+		String login = req.getParameter("login");
+		
+		String key = UserTools.getKey(login);
+
+		JSONObject o = services.commentaires.Timeline.Timeline(key);
+		
+		resp.setContentType("text/plain");
+		PrintWriter out = resp.getWriter();
+		out.println(o.toString());
+	}
+}
+
+
+
+>>>>>>> branch 'master' of https://github.com/Clemspace/Janken.git

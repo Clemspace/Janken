@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 /services/
 /test/
 /db/
 /servlets/
+=======
+/servlets/
+/services/
+/test/
+>>>>>>> branch 'master' of https://github.com/Clemspace/Janken.git
