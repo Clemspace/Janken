@@ -3,6 +3,7 @@ import axios from 'axios';
 import './index.css';
 
 import ListMessage from './ListMessage';
+import ListMessageFriend from './ListMessageFriend';
 
 class Profile extends Component {
 	constructor(props) {
@@ -20,10 +21,10 @@ class Profile extends Component {
 	send() {
 		axios.get("http://localhost:8080/Projets_Janken/AddFriend",{params:{user_login:this.state.me,
 																			friend_login:this.state.login}}).then(
-																	response => this.response_user(response));
+																	response => this.response_friend(response));
 	}
 
-	response_login(response) {
+	response_friend(response) {
 		console.log(response.data);
 		if(response.data["status"] === "error") {
 			this.setState({status : "error", desc : response.data["description"]});
@@ -36,25 +37,19 @@ class Profile extends Component {
 		if(this.state.me === "true") {
 			return (
 			<div className="user">
-			<section id="leftpanel">
 			<div className="img">
-			<img this.state.profilepic>
-			</img>
 			</div>
 			<p>{this.state.login}</p>
 			<pre class="nomprenom">{this.state.nom} {this.state.prenom} </pre>
-			</section>
 		  </div>
 		  );
 		}
 		else if (this.state.friend === "true") {
 			return (
 			<div className="user">
-			{this.state.login}
-			{this.state.nom}
-			{this.state.prenom}
-			<ListMessage login = {this.state.login} />
-		    </div>
+			<h1> Profil de {this.state.login} </h1>
+			<ListMessageFriend login = {this.state.login} />
+		  </div>
 		    );
 		}
 		else if (this.state.friend === "false") {
