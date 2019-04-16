@@ -80,7 +80,7 @@ class SignUp extends Component {
 				<input value={this.state.password} onChange={this.onChangePassword} type="password" placeholder="Password" name="password"/>
 				</div>
 
-			<input type="button" class="btn" onClick={(event) => this.send()} class="btn btn-danger" value="Ikuzo! 行くぞ"/>
+			<input type="button" class="btn" onClick={(event) => this.send()} value="Ikuzo! 行くぞ"/>
 			</form>
 		</div>)
 	}

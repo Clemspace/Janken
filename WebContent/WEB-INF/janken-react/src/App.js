@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './index.css';
 
-import NavigationPanel from './NavigationPanel';
 import SignUp from './SignUp';
 import FormMessage from './FormMessage';
 import ListMessage from './ListMessage';
@@ -25,6 +24,7 @@ class MainPage extends Component {
 		this.getConnected = this.getConnected.bind(this)
 		this.setSignUp = this.setSignUp.bind(this)
 		this.setLogout = this.setLogout.bind(this)
+		this.setFriend = this.setFriend.bind(this)
 	}
 
 	getConnected(log,n,pre) {
@@ -39,6 +39,12 @@ class MainPage extends Component {
 	setSignUp () {
 		this.setState({currentPage : "signUp",
 					   connected : "false"});
+	}
+
+	setFriend(f) {
+		console.log("oui "+f);
+		this.setState({friend : f});
+		console.log("SALUT "+this.state.friend);
 	}
 
 	render() {
@@ -59,12 +65,15 @@ class MainPage extends Component {
 					<Logout login = {this.state.login} setLogout = {this.setLogout}/>
 					<section id="leftpanel">
 					<Profile login = {this.state.login} nom = {this.state.nom} prenom= {this.state.prenom} me={"true"}/>
+					<hr />
+					<ListFriend login = {this.state.login} setFriend = {this.setFriend} />
+					<hr />
+					<Profile login = {this.state.friend} nom = {""} prenom = {""} me = {"false"} friend = {"true"}/>
 					</section>
 					<section id="centerpanel">
 					<section id="mainWall">
 					<FormMessage login = {this.state.login} />
 					<Timeline login = {this.state.login} />
-					<ListFriend login = {this.state.login}/>
 					</section>
 					</section>
 				</div>);

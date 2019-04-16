@@ -63,7 +63,6 @@ img {
   height:50%;
 }
 section#centerpanel{
-
   display: inline-block;
   width: 70%;
   height: 100%;
@@ -212,4 +211,10 @@ body{
 
 .nomprenom{
   font-size : 14px;
+}
+
+.friend {
+  font-size : 14px;
+  padding: 5px;
+  cursor: pointer;
 }
