@@ -57,6 +57,15 @@ section#leftpanel{
   text-align:center;
   input: center;
 }
+section#rightpanel{
+  display: inline-block;
+  width: 25%;
+  height: 100%;
+  float: right;
+  background-color:#15202B;
+  text-align:center;
+  input: center;
+}
 img {
   border-radius: 50%;
   width : 50%;

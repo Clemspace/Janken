@@ -6,7 +6,8 @@ class FormMessage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {login : props.login,
-					text : ""}
+									text : "",
+									newMessage : props.newMessage}
 		this.onChangeText = this.onChangeText.bind(this);
 	}
 
@@ -40,6 +41,7 @@ class FormMessage extends Component {
 			this.setState({status : "error", desc : response.data["description"]});
 		} else {
 			this.setState({status :""});
+			this.state.newMessage(this.state.login);
 		}
 	}
 

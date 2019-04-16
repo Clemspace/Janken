@@ -11,6 +11,7 @@ import Logout from './Logout';
 import ListFriend from './ListFriend';
 import NavigationBar from './NavigationBar';
 import Profile from './Profile';
+import listPeople from './ListPeople';
 
 class MainPage extends Component {
 	constructor(props) {
@@ -63,6 +64,7 @@ class MainPage extends Component {
 			return (<div>
 					<NavigationBar />
 					<Logout login = {this.state.login} setLogout = {this.setLogout}/>
+
 					<section id="leftpanel">
 					<Profile login = {this.state.login} nom = {this.state.nom} prenom= {this.state.prenom} me={"true"}/>
 					<hr />
@@ -70,10 +72,15 @@ class MainPage extends Component {
 					<hr />
 					<Profile login = {this.state.friend} nom = {""} prenom = {""} me = {"false"} friend = {"true"}/>
 					</section>
+
 					<section id="centerpanel">
 					<section id="mainWall">
-					<FormMessage login = {this.state.login} />
 					<Timeline login = {this.state.login} />
+					</section>
+
+					<section id="rightpanel">
+					<Search login = {this.state.login} />
+					<ListPeople me = {this.state.login} />
 					</section>
 					</section>
 				</div>);
