@@ -21,33 +21,28 @@ import services.ErrorJSON;
 import tools.FriendTools;
 import tools.UserTools;
 
-public class Timeline {
+public class Time {
 	
 	public static JSONObject timeline(String key) {
 		
 		try {
 			if(key == null) 
 				return ErrorJSON.serviceRefused("Argument Missing", -1);
-			GregorianCalendar calendar = new java.util.GregorianCalendar();
-			Date dod = calendar.getTime();
+			
 			MongoCollection<Document> coll = Database.getMongoCollection("messages");
 			JSONObject retour = new JSONObject();
 			int id_user = UserTools.getActiveConnId(key);
-			System.out.println("test");
-
-			String login = UserTools.getLogin(id_user);
 			
 			List<Integer> followed_ids = FriendTools.listFriends(id_user);
 			followed_ids.add(id_user);
-			BasicDBObject query = new BasicDBObject();
-
-			query.put("id", new BasicDBObject("$in", followed_ids));
-			//FindIterable<Document> msg = coll.find(query).iterator();
-			FindIterable<Document> f = coll.find(query);
-			MongoCursor<Document> cursor = f.iterator();
-			//cursor.sort(new BasicDBObject("date",-1));
 			
+			BasicDBObject query = new BasicDBObject();
+			query.put("id", new BasicDBObject("$in", followed_ids));
+			FindIterable<Document> msg = coll.find(query).sort(new BasicDBObject("date",-1));
+			
+			MongoCursor<Document> cursor = msg.iterator();			
 			Document doc = new Document();
+			
 			while (cursor.hasNext()) {
 				doc = cursor.next();
 				JSONObject post = new JSONObject();

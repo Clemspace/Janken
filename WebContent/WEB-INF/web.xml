@@ -48,18 +48,17 @@
 	<servlet> 
 		<servlet-name>ListMessageFriend</servlet-name> 
 		<servlet-class>servlets.commentaires.ListMessageFriendServlet</servlet-class> 
-	</servlet> 
-	
-	<servlet> 
-		<servlet-name>Timeline</servlet-name> 
-		<servlet-class>servlets.commentaires.TimelineServlet</servlet-class> 
-	</servlet> 
-	
+	</servlet> 	
 	
 	<!-- Servlets recherche --> 
 	<servlet> 
 		<servlet-name>Search</servlet-name> 
 		<servlet-class>servlets.recherche.SearchServlet</servlet-class> 
+	</servlet> 
+	
+	<servlet> 
+		<servlet-name>ListPeople</servlet-name> 
+		<servlet-class>servlets.recherhce.ListPeopleServlet</servlet-class> 
 	</servlet> 
 	
 	<!-- Servlet mapping authentification--> 
@@ -100,27 +99,26 @@
 		<url-pattern>/AddComment</url-pattern> 
 	</servlet-mapping>
 	
-<<<<<<< HEAD
 	<servlet-mapping> 
 		<servlet-name>Timeline</servlet-name> 
 		<url-pattern>/Timeline</url-pattern> 
 	</servlet-mapping>
 	
-=======
-		<servlet-mapping> 
-		<servlet-name>Timeline</servlet-name> 
-		<url-pattern>/Timeline</url-pattern> 
+	<servlet-mapping> 
+		<servlet-name>ListMessageFriend</servlet-name> 
+		<url-pattern>/ListMessageFriend</url-pattern> 
 	</servlet-mapping>
+	
 	<!-- Servlet mapping commentaires--> 
->>>>>>> branch 'master' of https://github.com/Clemspace/Janken.git
+	
 	<servlet-mapping> 
 		<servlet-name>Search</servlet-name> 
 		<url-pattern>/Search</url-pattern> 
 	</servlet-mapping>
 	
 	<servlet-mapping> 
-		<servlet-name>ListMessageFriend</servlet-name> 
-		<url-pattern>/ListMessageFriend</url-pattern> 
+		<servlet-name>ListPeople</servlet-name> 
+		<url-pattern>/ListPeople</url-pattern> 
 	</servlet-mapping>
 	
 	<filter>

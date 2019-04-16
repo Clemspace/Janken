@@ -205,4 +205,22 @@ public class UserTools {
 		return o;
 	}
 	
+	public static JSONObject getPeople() throws SQLException, JSONException {
+		Connection c = Database.getMySQLConnection();
+		String query = "SELECT login FROM users;";
+		java.sql.Statement st = c.createStatement();
+		ResultSet rs = st.executeQuery(query);
+		
+		JSONObject o = new JSONObject();
+		int i = 0;
+		while(rs.next()) {
+			o.put(""+i,rs.getString("login"));
+			i++;
+		}
+		
+		st.close();
+		c.close();
+		return o;
+	}
+	
 }
